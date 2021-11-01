@@ -1,4 +1,10 @@
-<h1>Requirement</h1>
+<h2>Topik Bahasan</h2>
+- [ ] Struktur Folder Laravel
+- [ ] Migrasi & Seeder Laravel
+- [ ] Mengenal Model di Laravel
+- [ ] Mengenal Controller di Laravel
+- [ ] Mengenal View di Laravel
+
 
 <h2>
     Tools yang harus diinstall
@@ -69,8 +75,8 @@ untuk migrasi struktur tabel dari file database/migrations/ ke database MySQL
 php artisan migrate
 ```
 
-<img src="screenshots/1.png"><br/><br/>
-<img src="screenshots/2.png">
+<img src="./screenshots/1.png"><br/><br/>
+<img src="./screenshots/2.png">
 
 <br/>
 
@@ -82,4 +88,4 @@ untuk insert seeder / data sample yang sudah didefinisikan di database/seeders/
 php artisan db:seed
 ```
 
-<img src="screenshots/3.png">
+<img src="./screenshots/3.png">
