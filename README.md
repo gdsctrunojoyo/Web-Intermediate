@@ -1,4 +1,5 @@
 <h2>Topik Bahasan</h2>
+
 - [ ] Struktur Folder Laravel
 - [ ] Migrasi & Seeder Laravel
 - [ ] Mengenal Model di Laravel
@@ -68,9 +69,9 @@ untuk migrasi struktur tabel dari file database/migrations/ ke database MySQL
 php artisan migrate
 ```
 
-![Gambar 1](./screenshots/1.png)
+![Gambar 1](./screenshots/1.PNG)
 <br/>
-![Gambar 2](./screenshots/2.png)
+![Gambar 2](./screenshots/2.PNG)
 
 untuk insert seeder / data sample yang sudah didefinisikan di database/seeders/
 
@@ -78,4 +79,4 @@ untuk insert seeder / data sample yang sudah didefinisikan di database/seeders/
 php artisan db:seed
 ```
 
-![Gambar Seeder](./screenshots/3.png)
+![Gambar Seeder](./screenshots/3.PNG)
