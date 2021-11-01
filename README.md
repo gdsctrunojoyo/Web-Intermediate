@@ -57,35 +57,25 @@ List Command
 </h2>
 
 
-<h3>
 untuk membuat tabel model, controller dan migration
-</h3>
 
 ```
 php artisan make:model Categories -mcr
 ```
-
-<br/>
-
-<h3>
 untuk migrasi struktur tabel dari file database/migrations/ ke database MySQL
-</h3>
 
 ```
 php artisan migrate
 ```
 
-<img src="./screenshots/1.png"><br/><br/>
-<img src="./screenshots/2.png">
-
+![Gambar 1](./screenshots/1.png)
 <br/>
+![Gambar 2](./screenshots/2.png)
 
-<h3>
 untuk insert seeder / data sample yang sudah didefinisikan di database/seeders/
-</h3>
 
 ```
 php artisan db:seed
 ```
 
-<img src="./screenshots/3.png">
+![Gambar Seeder](./screenshots/3.png)
