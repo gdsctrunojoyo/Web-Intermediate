@@ -7,6 +7,7 @@
 - [ ] Mengenal View di Laravel
 
 
+<br>
 <h2>
     Tools yang harus diinstall
 </h2>
@@ -53,6 +54,7 @@ php artisan serve
 9. Buka browser di localhost:8000
 
 
+<br>
 <h2>
 List Command
 </h2>
