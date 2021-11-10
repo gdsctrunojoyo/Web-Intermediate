@@ -11,7 +11,12 @@ class IndexController extends Controller
         return view('index');
     }
 
-    public function shopList()
+    public function login()
+    {
+        return view('login');
+    }
+
+    public function shopIndex()
     {
         return view('shop.index');
     }
@@ -30,5 +35,15 @@ class IndexController extends Controller
             'product' => $product
         ];
         return view('shop.detail', $data);
+    }
+
+    public function cartIndex()
+    {
+        return view('cart.index');
+    }
+
+    public function cartCheckout()
+    {
+        return view('cart.checkout');
     }
 }
