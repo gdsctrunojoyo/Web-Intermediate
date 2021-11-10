@@ -1,10 +1,10 @@
 <h2>Topik Bahasan</h2>
 
-- [ ] Struktur Folder Laravel
-- [ ] Migrasi & Seeder Laravel
-- [ ] Mengenal Model di Laravel
-- [ ] Mengenal Controller di Laravel
-- [ ] Mengenal View di Laravel
+- [v] Struktur Folder Laravel
+- [v] Migrasi & Seeder Laravel
+- [v] Konsep Controller di Laravel
+- [v] Konsep View di Laravel
+- [v] Konsep Helper di Laravel
 
 
 <br>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [IndexController::class, 'home'])->name('index');
+
+// Route::get('shop', [IndexController::class, 'shopList'])->name('shop.list');
+// Route::get('shop/detail/{id}/{slug}', [IndexController::class, 'shopDetail'])->name('shop.detail');
+
+Route::group(['prefix' => 'shop', 'as' => 'shop.'], function(){
+    Route::get('/', [IndexController::class, 'shopList'])->name('list');
+    Route::get('detail/{id}/{slug}', [IndexController::class, 'shopDetail'])->name('detail');
 });
