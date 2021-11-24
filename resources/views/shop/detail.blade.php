@@ -27,7 +27,7 @@ DETAIL PRODUK
         <div class="col-lg-6">
             <h1>{{ $product['name'] }}</h1>
             <p class="text-muted lead">
-                {{ CurrencyHelper::toRupiah($product['price']) }}
+                {{ CurrencyHelper::format($product['price'], 'USD') }}
             </p>
             <ul class="list-inline mb-2">
                 <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>

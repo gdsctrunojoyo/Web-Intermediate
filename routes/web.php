@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,12 +20,15 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [IndexController::class, 'home'])->name('index');
+
+Route::get('todo', [TodoController::class, 'index']);
+
 Route::get('login', [IndexController::class, 'login'])->name('login');
 
 // Route::get('shop', [IndexController::class, 'shopList'])->name('shop.list');
 // Route::get('shop/detail/{id}/{slug}', [IndexController::class, 'shopDetail'])->name('shop.detail');
 
-Route::group(['prefix' => 'shop', 'as' => 'shop.'], function(){
+Route::group(['prefix' => 'barang', 'as' => 'shop.'], function(){
     Route::get('/', [IndexController::class, 'shopIndex'])->name('index');
     Route::get('detail/{id}/{slug}', [IndexController::class, 'shopDetail'])->name('detail');
 });
