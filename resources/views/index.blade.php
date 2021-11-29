@@ -30,8 +30,10 @@ HOMEPAGE
           <div class="position-relative mb-3">
             <div class="badge text-white badge-"></div>
             <a class="d-block" href="{{ $item->detail_url }}">
-              <img class="img-fluid w-100" style="height:300px;object-fit:cover" 
-              src="{{ $item->cover_url }}" alt="{{ $item->name }}">
+              <img class="img-fluid w-100" 
+                style="height:300px;object-fit:cover" 
+                src="{{ $item->cover_url }}" 
+                alt="{{ $item->name }}">
             </a>
             <div class="product-overlay">
               <ul class="mb-0 list-inline">
@@ -39,8 +41,10 @@ HOMEPAGE
               </ul>
             </div>
           </div>
-          <h6> <a class="reset-anchor" href="{{ $item->detail_url }}">{{ $item->name }}</a></h6>
+          <h6> <a class="reset-anchor" href="{{ $item->detail_url }}">{{ $item->name }}</a>
+          </h6>
           <p class="small text-muted">{{ CurrencyHelper::toRupiah($item->price) }}</p>
+          <p class="small">Kategori: {{ $item->category->name }}</p>
         </div>
       </div>
       @endforeach

@@ -10,8 +10,15 @@ class IndexController extends Controller
 {
     public function home()
     {
+        $item = Item::orderBy('name', 'ASC')
+                    ->limit(8)
+                    ->get();
+        
+        // $item to sql
+        // SELECT * FROM items WHERE price <= 100000 ORDER BY name ASC LIMIT 8
+
         $data = [
-            'items' => Item::limit(8)->get()
+            'items' => $item
         ];
         return view('index', $data);
     }
@@ -59,6 +66,7 @@ class IndexController extends Controller
             'id' => $id,
             'slug' => $slug
         ])->first();
+
         if(!$product) abort(404);
 
         $data = [

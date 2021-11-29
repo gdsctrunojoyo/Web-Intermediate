@@ -44,7 +44,7 @@ LIST PRODUK
             <div class="col-lg-9 order-1 order-lg-2 mb-5 mb-lg-0">
               <div class="row mb-3 align-items-center">
                 <div class="col-lg-6 mb-2 mb-lg-0">
-                  <p class="text-small text-muted mb-0">Showing {{ $items->firstItem() }} - {{ $items->lastItem() }} of {{ $items->count() }} results</p>
+                  <p class="text-small text-muted mb-0">Showing {{ $items->firstItem() }} - {{ $items->lastItem() }} of {{ $items->total() }} results</p>
                 </div>
                 <div class="col-lg-6">
                   <ul class="list-inline d-flex align-items-center justify-content-lg-end mb-0">
