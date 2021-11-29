@@ -12,22 +12,29 @@ DETAIL PRODUK
             <div class="row m-sm-0">
                 <div class="col-sm-2 p-sm-0 order-2 order-sm-1 mt-2 mt-sm-0">
                     <div class="owl-thumbs d-flex flex-row flex-sm-column" data-slider-id="1">
-                    <div class="owl-thumb-item flex-fill mb-2 mr-2 mr-sm-0"><img class="w-100" src="{{url('')}}/img/product-detail-1.jpg" alt="..."></div>
-                    <div class="owl-thumb-item flex-fill mb-2 mr-2 mr-sm-0"><img class="w-100" src="{{url('')}}/img/product-detail-2.jpg" alt="..."></div>
-                    <div class="owl-thumb-item flex-fill mb-2 mr-2 mr-sm-0"><img class="w-100" src="{{url('')}}/img/product-detail-3.jpg" alt="..."></div>
-                    <div class="owl-thumb-item flex-fill mb-2"><img class="w-100" src="{{url('')}}/img/product-detail-4.jpg" alt="..."></div>
+                        @foreach($product->photos as $photo)
+                        <div class="owl-thumb-item flex-fill mb-2 mr-2 mr-sm-0">
+                            <img class="w-100" src="{{ $photo->photo_url }}" alt="...">
+                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-sm-10 order-1 order-sm-2">
-                    <div class="owl-carousel product-slider" data-slider-id="1"><a class="d-block" href="{{url('')}}/img/product-detail-1.jpg" data-lightbox="product" title="Product item 1"><img class="img-fluid" src="{{url('')}}/img/product-detail-1.jpg" alt="..."></a><a class="d-block" href="{{url('')}}/img/product-detail-2.jpg" data-lightbox="product" title="Product item 2"><img class="img-fluid" src="{{url('')}}/img/product-detail-2.jpg" alt="..."></a><a class="d-block" href="{{url('')}}/img/product-detail-3.jpg" data-lightbox="product" title="Product item 3"><img class="img-fluid" src="{{url('')}}/img/product-detail-3.jpg" alt="..."></a><a class="d-block" href="{{url('')}}/img/product-detail-4.jpg" data-lightbox="product" title="Product item 4"><img class="img-fluid" src="{{url('')}}/img/product-detail-4.jpg" alt="..."></a></div>
+                    <div class="owl-carousel product-slider" data-slider-id="1">
+                        @foreach($product->photos as $photo)
+                        <a class="d-block" href="{{ $photo->photo_url }}" data-lightbox="product" title="Product item 1">
+                            <img class="img-fluid" src="{{ $photo->photo_url }}" alt="...">
+                        </a>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
         <!-- PRODUCT DETAILS-->
         <div class="col-lg-6">
-            <h1>{{ $product['name'] }}</h1>
+            <h1>{{ $product->name }}</h1>
             <p class="text-muted lead">
-                {{ CurrencyHelper::format($product['price'], 'USD') }}
+                {{ CurrencyHelper::toRupiah($product->price) }}
             </p>
             <ul class="list-inline mb-2">
                 <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
@@ -49,9 +56,9 @@ DETAIL PRODUK
             <div class="col-sm-3 pl-sm-0"><a class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" href="cart.html">Add to cart</a></div>
             </div>
             <ul class="list-unstyled small d-inline-block">
-            <li class="px-3 py-2 mb-1 bg-white"><strong class="text-uppercase">SKU:</strong><span class="ml-2 text-muted">039</span></li>
-            <li class="px-3 py-2 mb-1 bg-white text-muted"><strong class="text-uppercase text-dark">Category:</strong><a class="reset-anchor ml-2" href="#">Demo Products</a></li>
-            <li class="px-3 py-2 mb-1 bg-white text-muted"><strong class="text-uppercase text-dark">Tags:</strong><a class="reset-anchor ml-2" href="#">Innovation</a></li>
+                <li class="px-3 py-2 mb-1 bg-white text-muted"><strong class="text-uppercase text-dark">Stock:</strong><a class="reset-anchor ml-2" href="#">{{ $product->stock }} Pcs</a></li>
+                <li class="px-3 py-2 mb-1 bg-white text-muted"><strong class="text-uppercase text-dark">Kategori:</strong><a class="reset-anchor ml-2" href="#">{{ $product->category->name }}</a></li>
+                <li class="px-3 py-2 mb-1 bg-white text-muted"><strong class="text-uppercase text-dark">Terakhir diupdate:</strong><a class="reset-anchor ml-2" href="#">{{ $product->last_edited }}</a></li>
             </ul>
         </div>
     </div>
@@ -63,7 +70,7 @@ DETAIL PRODUK
         <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
             <div class="p-4 p-lg-5 bg-white">
             <h6 class="text-uppercase">Product description </h6>
-            <p class="text-muted text-small mb-0">{{ $product['desc'] }}</p>
+            <p class="text-muted text-small mb-0">{{ $product->desc }}</p>
             </div>
         </div>
     </div>

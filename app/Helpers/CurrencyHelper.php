@@ -4,12 +4,8 @@ namespace App\Helpers;
 
 class CurrencyHelper
 {
-    public static function format($value, $currency='IDR')
+    public static function toRupiah($value)
     {
-        if($currency == 'IDR'){
-            return 'Rp '.number_format($value, 0, ',', '.');
-        } else {
-            return $value;
-        }
+        return 'Rp. '.number_format($value, 0, ',', '.');
     }
 }
