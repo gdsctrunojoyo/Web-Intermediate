@@ -25,6 +25,8 @@ LIST CART
   </section>
   <section class="py-5">
     <h2 class="h5 text-uppercase mb-4">Shopping cart</h2>
+
+    @if(count($carts) > 0)
     <div class="row">
       <div class="col-lg-8 mb-4 mb-lg-0">
         <!-- CART TABLE-->
@@ -32,69 +34,68 @@ LIST CART
           <table class="table">
             <thead class="bg-light">
               <tr>
-                <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Product</strong></th>
-                <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Price</strong></th>
-                <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Quantity</strong></th>
-                <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Total</strong></th>
+                <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Nama Produk</strong></th>
+                <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Harga</strong></th>
+                <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Qty</strong></th>
+                <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Subtotal</strong></th>
                 <th class="border-0" scope="col"> </th>
               </tr>
             </thead>
             <tbody>
+              @foreach($carts as $cart)
               <tr>
                 <th class="pl-0 border-0" scope="row">
-                  <div class="media align-items-center"><a class="reset-anchor d-block animsition-link" href="detail.html"><img src="img/product-detail-3.jpg" alt="..." width="70"/></a>
-                    <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link" href="detail.html">Red digital smartwatch</a></strong></div>
+                  <div class="media align-items-center">
+                    <p style="font-weight: 400">
+                        {{ $cart->name }}
+                    </p>
                   </div>
                 </th>
                 <td class="align-middle border-0">
-                  <p class="mb-0 small">$250</p>
+                  <p class="mb-0 small">
+                    {{ CurrencyHelper::toRupiah($cart->price) }}
+                  </p>
                 </td>
                 <td class="align-middle border-0">
                   <div class="border d-flex align-items-center justify-content-between px-3">
-                      <span class="small text-uppercase text-gray headings-font-family">Quantity</span>
+                    <span class="small text-uppercase text-gray headings-font-family">Quantity</span>
                     <div class="quantity">
-                      <button class="dec-btn p-0"><i class="fas fa-caret-left"></i></button>
-                      <input class="form-control form-control-sm border-0 shadow-0 p-0" type="text" value="1"/>
-                      <button class="inc-btn p-0"><i class="fas fa-caret-right"></i></button>
+                      <a href="{{ route('cart.update', [$cart->id, $cart->quantity-1]) }}" class="dec-btn p-0">
+                        <i class="fas fa-caret-left"></i>
+                      </a>
+
+                      <input class="form-control form-control-sm border-0 shadow-0 p-0" 
+                        type="text" 
+                        value="{{ $cart->quantity }}"/>
+                      
+                      <a class="inc-btn p-0" href="{{ route('cart.update', [$cart->id, $cart->quantity+1]) }}">
+                        <i class="fas fa-caret-right"></i>
+                      </a>
+                      
                     </div>
                   </div>
                 </td>
                 <td class="align-middle border-0">
-                  <p class="mb-0 small">$250</p>
+                  <p class="mb-0 small">
+                    {{ CurrencyHelper::toRupiah($cart->price * $cart->quantity) }}
+                  </p>
                 </td>
-                <td class="align-middle border-0"><a class="reset-anchor" href="#"><i class="fas fa-trash-alt small text-muted"></i></a></td>
+                <td class="align-middle border-0">
+                  <a class="reset-anchor" href="{{ route('cart.remove', [$cart->id]) }}">
+                    <i class="fas fa-trash-alt small text-muted"></i>
+                  </a>
+                </td>
               </tr>
-              <tr>
-                <th class="pl-0 border-light" scope="row">
-                  <div class="media align-items-center"><a class="reset-anchor d-block animsition-link" href="detail.html"><img src="img/product-detail-2.jpg" alt="..." width="70"/></a>
-                    <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link" href="detail.html">Apple watch</a></strong></div>
-                  </div>
-                </th>
-                <td class="align-middle border-light">
-                  <p class="mb-0 small">$250</p>
-                </td>
-                <td class="align-middle border-light">
-                  <div class="border d-flex align-items-center justify-content-between px-3"><span class="small text-uppercase text-gray headings-font-family">Quantity</span>
-                    <div class="quantity">
-                      <button class="dec-btn p-0"><i class="fas fa-caret-left"></i></button>
-                      <input class="form-control form-control-sm border-0 shadow-0 p-0" type="text" value="1"/>
-                      <button class="inc-btn p-0"><i class="fas fa-caret-right"></i></button>
-                    </div>
-                  </div>
-                </td>
-                <td class="align-middle border-light">
-                  <p class="mb-0 small">$250</p>
-                </td>
-                <td class="align-middle border-light"><a class="reset-anchor" href="#"><i class="fas fa-trash-alt small text-muted"></i></a></td>
-              </tr>
+              @endforeach
             </tbody>
           </table>
         </div>
         <!-- CART NAV-->
         <div class="bg-light px-4 py-3">
           <div class="row align-items-center text-center">
-            <div class="col-md-6 mb-3 mb-md-0 text-md-left"><a class="btn btn-link p-0 text-dark btn-sm" href="shop.html"><i class="fas fa-long-arrow-alt-left mr-2"> </i>Continue shopping</a></div>
-            <div class="col-md-6 text-md-right"><a class="btn btn-dark btn-sm" href="checkout.html">Procceed to checkout<i class="fas fa-long-arrow-alt-right ml-2"></i></a></div>
+            <div class="col-md-6 mb-3 mb-md-0 text-md-left">
+              <a class="btn btn-link p-0 text-dark btn-sm" href="{{ url('/') }}"><i class="fas fa-long-arrow-alt-left mr-2"> </i>Kembali belanja</a></div>
+            <div class="col-md-6 text-md-right"><a class="btn btn-dark btn-sm" href="{{ route('cart.checkout') }}">Bayar Sekarang<i class="fas fa-long-arrow-alt-right ml-2"></i></a></div>
           </div>
         </div>
       </div>
@@ -104,13 +105,21 @@ LIST CART
           <div class="card-body">
             <h5 class="text-uppercase mb-4">Cart total</h5>
             <ul class="list-unstyled mb-0">
-              <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Subtotal</strong><span class="text-muted small">$250</span></li>
+              <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Subtotal</strong><span class="text-muted small">{{ CurrencyHelper::toRupiah($subtotal) }}</span></li>
               <li class="border-bottom my-2"></li>
-              <li class="d-flex align-items-center justify-content-between mb-4"><strong class="text-uppercase small font-weight-bold">Total</strong><span>$250</span></li>
+              <li class="d-flex align-items-center justify-content-between mb-4"><strong class="text-uppercase small font-weight-bold">Total</strong><span>{{ CurrencyHelper::toRupiah($subtotal) }}</span></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
+    @else
+    <div class="row">
+      <div class="col-12">
+        <p>Keranjang belanja Anda kosong</p>
+      </div>
+    </div>
+    @endif
+
   </section>
 @endsection

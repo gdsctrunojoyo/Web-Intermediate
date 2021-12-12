@@ -82,3 +82,45 @@ php artisan db:seed
 ```
 
 ![Gambar Seeder](./screenshots/3.PNG)
+
+
+---------------
+
+<h1>Pertemuan 3</h1>
+
+<br>
+<h2>
+    Laravel Shopping Cart
+</h2>
+
+<a href="https://github.com/darryldecode/laravelshoppingcart">Detail library</a>
+
+```
+composer require "darryldecode/cart"
+```
+
+<br>
+<h2>
+    Laravel Sweet Alert
+</h2>
+<a href="https://realrashid.github.io/sweet-alert/install">Detail library</a>
+
+```
+composer require realrashid/sweet-alert
+```
+
+<br>
+<p>
+Setelah menginstall command di atas, jalankan
+</p>
+
+```
+php artisan migrate
+```
+
+Laravel Auth
+```
+composer require laravel/ui
+php artisan ui:auth
+php artisan migrate
+```

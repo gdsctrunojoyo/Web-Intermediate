@@ -174,7 +174,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        Darryldecode\Cart\CartServiceProvider::class
     ],
 
     /*
@@ -229,6 +229,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'CurrencyHelper' => App\Helpers\CurrencyHelper::class,
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class
 
     ],
 

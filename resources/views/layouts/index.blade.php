@@ -52,10 +52,31 @@
                 </li> --}}
               </ul>
               <ul class="navbar-nav ml-auto">               
-                <li class="nav-item"><a class="nav-link" href="{{ route('cart.index') }}"> <i class="fas fa-dolly-flatbed mr-1 text-gray"></i>Cart<small class="text-gray">(2)</small></a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('cart.index') }}"> <i class="fas fa-dolly-flatbed mr-1 text-gray"></i>Cart<small class="text-gray">({{ count(\Cart::getContent()) }})</small></a></li>
                 {{-- <li class="nav-item"><a class="nav-link" href="#"> <i class="far fa-heart mr-1"></i><small class="text-gray"> (0)</small></a></li> --}}
-                <li class="nav-item"><a class="nav-link" href="#"> <i class="fas fa-user-alt mr-1 text-gray"></i>Login</a></li>
+                @guest
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('login') }}"> 
+                    <i class="fas fa-user-alt mr-1 text-gray"></i>Login
+                  </a>
+                </li>
+                @else
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
+                    <div class="dropdown-menu">
+                      <a href="{{ route('home') }}" class="dropdown-item">Dashboard</a>
+                      <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                      document.getElementById('logout-form').submit();">
+                          {{ __('Logout') }}
+                      </a>
+                    </div>
+                  </li>
+                @endguest
               </ul>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                  @csrf
+              </form>
             </div>
           </nav>
         </div>
@@ -148,13 +169,14 @@
       </footer>
       <!-- JavaScript files-->
       <script src="{{ url('vendor/jquery/jquery.min.js') }}"></script>
-      <script src="{{ url('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+      <script src="{{ url('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
       <script src="{{ url('vendor/lightbox2/js/lightbox.min.js') }}"></script>
       <script src="{{ url('vendor/nouislider/nouislider.min.js') }}"></script>
       <script src="{{ url('vendor/bootstrap-select/js/bootstrap-select.min.js') }}"></script>
       <script src="{{ url('vendor/owl.carousel2/owl.carousel.min.js') }}"></script>
       <script src="{{ url('vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js') }}"></script>
       <script src="{{ url('js/front.js') }}"></script>
+      @include('sweetalert::alert')
       <script>
         // ------------------------------------------------------- //
         //   Inject SVG Sprite - 

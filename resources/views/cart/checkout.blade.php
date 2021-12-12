@@ -26,42 +26,39 @@ CHECKOUT
 </section>
 <section class="py-5">
   <!-- BILLING ADDRESS-->
-  <h2 class="h5 text-uppercase mb-4">Billing details</h2>
+  <h2 class="h5 text-uppercase mb-4">Detail Pembayaran</h2>
   <div class="row">
     <div class="col-lg-8">
-      <form action="#">
+      <form action="{{ route('cart.order') }}" method="POST">
         <div class="row">
+          {{ csrf_field() }}
           <div class="col-lg-12 form-group">
-            <label class="text-small text-uppercase" for="firstName">First name</label>
-            <input class="form-control form-control-lg" id="firstName" type="text" placeholder="Enter your first name">
+            <label class="text-small text-uppercase" for="firstName">Nama Lengkap</label>
+            <input class="form-control form-control-lg" name="name" id="firstName" type="text">
           </div>
           <div class="col-lg-6 form-group">
             <label class="text-small text-uppercase" for="email">Email</label>
-            <input class="form-control form-control-lg" id="email" type="email" placeholder="e.g. Jason@example.com">
+            <input class="form-control form-control-lg" name="email" id="email" type="email">
           </div>
           <div class="col-lg-6 form-group">
             <label class="text-small text-uppercase" for="phone">Nomor Telp</label>
-            <input class="form-control form-control-lg" id="phone" type="tel" placeholder="e.g. +02 245354745">
-          </div>
-          <div class="col-lg-6 form-group">
-            <label class="text-small text-uppercase" for="company">Nama Perusahaan</label>
-            <input class="form-control form-control-lg" id="company" type="text" placeholder="Your company name">
-          </div>
-          <div class="col-lg-6 form-group">
-            <label class="text-small text-uppercase" for="country">Negara</label>
-            <select class="selectpicker country" id="country" data-width="fit" data-style="form-control form-control-lg" data-title="Select your country"></select>
-          </div>
-          <div class="col-lg-12 form-group">
-            <label class="text-small text-uppercase" for="address">Alamat</label>
-            <input class="form-control form-control-lg" id="address" type="text" placeholder="House number and street name">
-          </div>
-          <div class="col-lg-6 form-group">
-            <label class="text-small text-uppercase" for="city">Kota</label>
-            <input class="form-control form-control-lg" id="city" type="text">
+            <input class="form-control form-control-lg" name="telp" id="phone" type="tel">
           </div>
           <div class="col-lg-6 form-group">
             <label class="text-small text-uppercase" for="state">Provinsi</label>
-            <input class="form-control form-control-lg" id="state" type="text">
+            <input class="form-control form-control-lg"  name="province" id="state" type="text">
+          </div>
+          <div class="col-lg-6 form-group">
+            <label class="text-small text-uppercase" for="city">Kota</label>
+            <input class="form-control form-control-lg" name="city" id="city" type="text">
+          </div>
+          <div class="col-lg-6 form-group">
+            <label class="text-small text-uppercase" for="address">Alamat</label>
+            <input class="form-control form-control-lg" name="address" id="address" type="text">
+          </div>
+          <div class="col-lg-6 form-group">
+            <label class="text-small text-uppercase" for="kodepos">Kodepos</label>
+            <input class="form-control form-control-lg" name="kodepos" id="kodepos" type="text">
           </div>
           <div class="col-lg-12 form-group">
             <button class="btn btn-dark btn-lg btn-block" type="submit">Buat Pesanan</button>
@@ -75,11 +72,13 @@ CHECKOUT
         <div class="card-body">
           <h5 class="text-uppercase mb-4">Your order</h5>
           <ul class="list-unstyled mb-0">
-            <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Red digital smartwatch</strong><span class="text-muted small">$250</span></li>
+            @foreach($carts as $cart)
+            <li class="d-flex align-items-center justify-content-between">
+              <strong class="small font-weight-bold">{{ $cart->name }}</strong>
+              <span class="text-muted small">{{ CurrencyHelper::toRupiah($cart->price) }}</span></li>
             <li class="border-bottom my-2"></li>
-            <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Gray Nike running shoes</strong><span class="text-muted small">$351</span></li>
-            <li class="border-bottom my-2"></li>
-            <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Total</strong><span>$601</span></li>
+            @endforeach
+            <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Total</strong><span>{{ CurrencyHelper::toRupiah($subtotal) }}</span></li>
           </ul>
         </div>
       </div>

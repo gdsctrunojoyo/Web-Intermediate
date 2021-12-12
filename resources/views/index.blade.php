@@ -37,7 +37,7 @@ HOMEPAGE
             </a>
             <div class="product-overlay">
               <ul class="mb-0 list-inline">
-                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.html">Add to cart</a></li>
+                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="{{ route('cart.add', [$item->id, 1]) }}">Add to cart</a></li>
               </ul>
             </div>
           </div>
